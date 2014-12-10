@@ -1,0 +1,16 @@
+<h1>Question</h1>
+
+<p><%= @question.title %>: <%= @question.content %></p>
+
+<p><%= link_to 'Destroy', question_path(@question), method: :delete, data: { confirm: 'Are you sure?' } %>| <%= link_to 'Edit', edit_question_path(@question) %></p>
+<%= render 'answers/form' %>
+<br>
+<% @question.answers.each do |answer| %>
+  <% if answer.id %>
+  <p><%= answer.title %>: <%= answer.content %> | points: <%= answer.points %> | <%= link_to "up", upvote_question_answer_path(@question, answer), method: :post %> <%= link_to "down", downvote_question_answer_path(@question, answer), method: :post %></p>
+  <% end %>
+<% end %>
+
+
+
+

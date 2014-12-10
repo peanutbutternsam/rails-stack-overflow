@@ -1,0 +1,15 @@
+<h1>Question: Update</h1>
+
+ <strong><%= @question.title %></strong><br>
+   <%= @question.content %><br><br>
+
+  <%= form_for :question, url: question_path(@question), method: :patch do |f| %>
+    Title: <%= f.text_field :title %><br/>
+    Content: <%= f.text_field :content %><br/>
+    <%= f.hidden_field :question_id, :value => @question.id %>
+    <%= f.submit %>
+  <% end %>
+
+  <%= link_to 'Back', questions_path %>
+
+

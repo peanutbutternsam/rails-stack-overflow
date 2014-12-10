@@ -1,0 +1,13 @@
+<p>"<%= get_quote %>"</p>
+
+<h1>Questions</h1>
+
+<%= render 'form' %>
+<br>
+<br>
+<% @questions.each do |question|%>
+  <%= link_to 'Question', question %>
+  <% @question = question %>
+  <p><strong><%= question.title %>?:</strong>
+  <%= question.content %> | votecount: <%= question.points %> | <%= link_to "up", upvote_question_path(question), method: :post %> <%= link_to "down", downvote_question_path(question), method: :post %></p>
+<% end %>
