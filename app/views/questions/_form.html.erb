@@ -1,5 +1,12 @@
+  <h3>New question</h3>
   <%= form_for @question do |f| %>
+  <div class="field">
     Title: <%= f.text_field :title %><br/>
     Content: <%= f.text_field :content %><br/>
+  </div>
+  <div class="actions">
     <%= f.submit %>
+  </div>
   <% end %>
+
+
