@@ -11,11 +11,7 @@
 </ul>
 
 
-<% @question.answers.each do |answer| %>
-  <% if answer.id %>
-  <p><%= answer.title %>: <%= answer.content %> | points: <%= answer.points %> | <%= link_to "up", upvote_question_answer_path(@question, answer), method: :post %> <%= link_to "down", downvote_question_answer_path(@question, answer), method: :post %></p>
-  <% end %>
-<% end %>
+
 
 
 
