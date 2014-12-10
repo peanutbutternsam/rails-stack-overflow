@@ -2,7 +2,9 @@
 
 <p><%= @question.title %>: <%= @question.content %></p>
 
-<p><%= link_to 'Destroy', question_path(@question), method: :delete, data: { confirm: 'Are you sure?' } %>| <%= link_to 'Edit', edit_question_path(@question) %></p>
+<p><%= link_to 'Destroy', question_path(@question), method: :delete, data: { confirm: 'Are you sure?' } %>| <%= link_to 'Edit', edit_question_path(@question) %>
+</p>
+
 <%= render 'answers/form' %>
 <br>
 

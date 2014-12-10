@@ -15,20 +15,24 @@ class AnswersController < ApplicationController
 
   def create
     @answer = @question.answers.build(answer_params)
-    if @answer.save
-      redirect_to @question
-    else
-      render @question
+    respond_to do |format|
+      if @answer.save
+        format.html { redirect_to @question, notice: 'Answer successfully created'}
+        format.js { render :create }
+      else
+        format.html { render action: 'show' }
+        format.js { render :error }
+      end
     end
   end
 
   def upvote
-    @answer.votes.create(upvote: true)
+    @vote = @answer.votes.create(upvote: true)
     redirect_to @question
   end
 
   def downvote
-    @answer.votes.create(upvote: false)
+    @vote = @answer.votes.create(upvote: false)
     redirect_to @question
   end
 

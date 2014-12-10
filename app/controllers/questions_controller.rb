@@ -49,9 +49,19 @@ class QuestionsController < ApplicationController
   end
 
   def upvote
-    @question.votes.create(upvote: true)
-    redirect_to root_path
+    @questions = Question.all
+    @question_vote = @question.votes.new(upvote: true)
+    respond_to do |format|
+      if @question_vote.save
+        format.html { redirect_to questions_path, notice: 'Vote submitted'}
+        format.js { render 'upvote' }
+      else
+        format.html { render action: 'show' }
+        format.js { render :error }
+      end
+    end
   end
+
 
   def downvote
     @question.votes.create(upvote: false)
