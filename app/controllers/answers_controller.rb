@@ -27,13 +27,29 @@ class AnswersController < ApplicationController
   end
 
   def upvote
-    @vote = @answer.votes.create(upvote: true)
-    redirect_to @question
+    @vote = @answer.votes.new(upvote: true)
+    respond_to do |format|
+      if @vote.save
+        format.html { redirect_to @question, notice: 'Vote submitted'}
+        format.js { render 'upvote' }
+      else
+        format.html { render action: 'show' }
+        format.js { render :error }
+      end
+    end
   end
 
   def downvote
     @vote = @answer.votes.create(upvote: false)
-    redirect_to @question
+    respond_to do |format|
+      if @vote.save
+        format.html { redirect_to @question, notice: 'Vote submitted'}
+        format.js { render 'upvote' }
+      else
+        format.html { render action: 'show' }
+        format.js { render :error }
+      end
+    end
   end
 
   private

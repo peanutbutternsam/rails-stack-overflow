@@ -1,0 +1,5 @@
+
+votecount: <p id="answer_points_<%= answer.id %>"><%= answer.points %></p>
+<p>
+<%= link_to "up", upvote_question_answer_path(@question, answer), remote: true, method: :post %> <%= link_to "down", downvote_question_answer_path(@question, answer), remote: true, method: :post %>
+</p>

@@ -2,7 +2,7 @@
 <li>
   <strong><%= answer.title %>:</strong> <br>
   <p><%= answer.content %></p>
-  <p>points: <%= answer.points %> | <%= link_to "up", upvote_question_answer_path(@question, answer), method: :post %> <%= link_to "down", downvote_question_answer_path(@question, answer), method: :post %>
-  </p>
+  <%= render "answers/answer_vote", answer: answer %>
+
 </li>
 <% end %>

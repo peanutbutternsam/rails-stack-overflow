@@ -49,7 +49,6 @@ class QuestionsController < ApplicationController
   end
 
   def upvote
-    @questions = Question.all
     @question_vote = @question.votes.new(upvote: true)
     respond_to do |format|
       if @question_vote.save
@@ -64,8 +63,16 @@ class QuestionsController < ApplicationController
 
 
   def downvote
-    @question.votes.create(upvote: false)
-    redirect_to root_path
+    @question_vote = @question.votes.new(upvote: false)
+    respond_to do |format|
+      if @question_vote.save
+        format.html { redirect_to questions_path, notice: 'Vote submitted'}
+        format.js { render 'downvote' }
+      else
+        format.html { render action: 'show' }
+        format.js { render :error }
+      end
+    end
   end
 
   private
